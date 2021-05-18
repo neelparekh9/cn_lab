@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <link rel="stylesheet" href="mystyle.css">
+    <meta charset="utf-8">
+    <title>HTML</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <style>
+    input[type='text'],input[type='password']{
+      background-color: transparent;
+      color: black;
+      width:350px;
+      border:0;
+      border-bottom: 2px solid black ;
+      padding-bottom: 10px;
+    }
+
+    input[type='submit']{
+      background-color: transparent;
+      border: 1;
+      color: black;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      font-family: 'Merriweather',serif;
+      border-radius: 12px;
+    }
+    .content{
+        width: 520px;
+        position: fixed;
+        background-color: white;
+        margin: 0;
+        padding: 20px;
+        border-radius: 12px;
+        left: 600px;
+        top: 150px;
+      }
+      a:link {
+        color: red;
+        background-color: transparent;
+        text-decoration: none;
+      }
+
+      a:visited {
+        color: purple;
+        background-color: transparent;
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: pink;
+        background-color: transparent;
+        text-decoration: underline;
+      }
+
+      a:active {
+        color: yellow;
+        background-color: transparent;
+        text-decoration: underline;
+      }
+      @media screen and (max-width: 600px) {
+            .column,div
+            {
+            width: 100%;
+            }
+        }
+      @media screen and (max-width: 600px) {
+        .text {
+          font-size: 16px;
+        }
+      }
+      #myVideo {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+    }
+
+      </style>
+  </head>
+<body>
+<script>
+function validateForm()
+{
+  var un = document.forms["loginform"]["username"].value;
+  var pw = document.forms["loginform"]["pwd"].value;
+
+  if ((un == "neel") && (pw == "qwerty"))
+  {
+    return true;
+  }
+  else
+  {
+    alert("Incorrect Credentials");
+    return false; }
+  }
+</script>
+
+<video autoplay muted loop id="myVideo">
+  <source src="media/VoodooChild2.mp4" type="video/mp4">
+</video>
+
+
+  <br><br><br><br>
+  <center>
+  <div class="content">
+    <center>
+      <h1>Login</h1>
+    <form name="loginform" action="log.php" method="post">
+      <label for="txtEmail">Username:</label>
+      <input type="text" placeholder="Enter Email" id="txtEmail" name="txtEmail" required>
+      <br>
+      <br>
+      <label for="txtPwd">Password :</label>
+      <input type="password" placeholder="Enter Password" id="txtPwd" name="txtPwd" required>
+      <br>
+      <br>
+      <input type="submit" value="Login">
+      <br>
+      <br>
+      Don't have an account?
+      <br>
+      <a href="register.html">Click here to Register</a>
+    </form>
+
+
+
+    </center>
+  </div>
+</center>
+
+
+</body>
+</html>
