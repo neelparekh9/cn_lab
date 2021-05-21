@@ -13,10 +13,11 @@ else {
 }
 
 
-$sql = "SELECT * FROM `hof`";
-
-//insert in database
+$txtArtist = $_POST['txtArtist'];
+//echo "Artist: " . $txtArtist;
+$sql = "SELECT * FROM `hof` WHERE `name` = '$txtArtist' ";
 $result = $con->query($sql);
+
 $con->close();
 ?>
 
@@ -33,6 +34,7 @@ $con->close();
   <link href="/your-path-to-fontawesome/css/solid.css" rel="stylesheet">
   <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
     <meta charset="utf-8">
+    <title>Guitar</title>
   <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="mystyle.css">
     <meta charset="utf-8">
@@ -49,7 +51,6 @@ $con->close();
         border-radius: 12px;
         font-family: 'Merriweather',serif;
       }
-
       p {
         text-align: justify;
         text-justify: inter-word;
@@ -91,7 +92,7 @@ $con->close();
           }
 
     @media screen and (max-width: 600px) {
-          .column,.content,.card
+          .column,.content
           {
           width: 100%;
           }
@@ -125,35 +126,35 @@ $con->close();
       <center>
       <h1>Hall of Fame</h1>
       <br>
-      <a href="addInfo.html" class="btn btn-success btn-lg active" role="button" aria-pressed="true">Add a card</a>
-       <a href="ops.php" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Modify a card</a>
-       <a href="removeOp.php" class="btn btn-danger btn-lg active" role="button" aria-pressed="true">Remove a card</a>
       <br>
-      <br>
- <?php
+      <form name="modform" method="post" action="modifyInfo.php">
+        <?php
     if ($result->num_rows > 0) {
   // output data of each row
-        while($row = $result->fetch_assoc()) {
-          ?>
-          <div class="card">
-            <img src ="<?php echo $row["picLoc"];?>" height="150">
-            <div class="container">
-              <h4><b><?php echo $row["name"]; ?></b></h4>
-              <p>
-                  <?php echo $row["info"]; ?>
-              </p>
-            </div>
-          </div>
-          <br> <br>
-          <?php
+        while($row = $result->fetch_assoc()) { ?>
+      <label for="txtArtist">Artist name:</label>
+      <input type="text"  id="txtArtist" name="txtArtist" value="<?php echo $row["name"]; ?>" >
+      <br>
+      <br>
+      <label for="txtImg">Image address:</label>
+      <input type="text"  id="txtImg" name="txtImg" value="<?php echo $row["picLoc"]; ?>" required>
+      <br>
+      <br>
+      <label>Information:</label>
+      <br>
+      <textarea id="txtInfo" name="txtInfo" rows="4" cols="70" required><?php echo $row["info"];?></textarea>
+      <?php
           //echo $row["name"]. "<br>";
-         // echo "Age: " . $row["age"]. "<br>";
-         // echo "Email: " . $row["mail"]. "<br>";
+          //echo "Loc: " . $row["picLoc"]. "<br>";
+          //echo "Info: " . $row["info"]. "<br>";
         }
       } else {
         echo "0 results";
       }
      ?>
+      <br>
+      <input type="submit" value="Add page">
+    </form>
      <br>
       </center>
    </div>

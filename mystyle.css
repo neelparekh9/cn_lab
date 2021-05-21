@@ -5,7 +5,8 @@
 
 body {
   background-color: lightblue;
-  background-image: url("media/background.jpg");
+  background-image: url("media/background2.jpg");
+  background-repeat: repeat-y;
   font-family: 'Merriweather',serif;
 }
 

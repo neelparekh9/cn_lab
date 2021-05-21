@@ -36,7 +36,7 @@ $con->close();
   <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="mystyle.css">
     <meta charset="utf-8">
-    <title>Hall Of Fame</title>
+    <title>Remove a Card</title>
     <style>
     @-ms-viewport{
   width: device-width;
@@ -49,7 +49,6 @@ $con->close();
         border-radius: 12px;
         font-family: 'Merriweather',serif;
       }
-
       p {
         text-align: justify;
         text-justify: inter-word;
@@ -91,7 +90,7 @@ $con->close();
           }
 
     @media screen and (max-width: 600px) {
-          .column,.content,.card
+          .column,.content
           {
           width: 100%;
           }
@@ -114,46 +113,35 @@ $con->close();
       <li><a href="history.html">A Brief History</a></li>
       <li><a href="hof.php">Hall of Fame</a></li>
     </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="login.html"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-    </ul>
   </div>
 </nav>
     <center>
 <br><br><br><br>
     <div class="content">
       <center>
-      <h1>Hall of Fame</h1>
-      <br>
-      <a href="addInfo.html" class="btn btn-success btn-lg active" role="button" aria-pressed="true">Add a card</a>
-       <a href="ops.php" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Modify a card</a>
-       <a href="removeOp.php" class="btn btn-danger btn-lg active" role="button" aria-pressed="true">Remove a card</a>
+      <h1>Remove a Card</h1>
       <br>
       <br>
- <?php
-    if ($result->num_rows > 0) {
-  // output data of each row
-        while($row = $result->fetch_assoc()) {
-          ?>
-          <div class="card">
-            <img src ="<?php echo $row["picLoc"];?>" height="150">
-            <div class="container">
-              <h4><b><?php echo $row["name"]; ?></b></h4>
-              <p>
-                  <?php echo $row["info"]; ?>
-              </p>
-            </div>
-          </div>
-          <br> <br>
-          <?php
-          //echo $row["name"]. "<br>";
-         // echo "Age: " . $row["age"]. "<br>";
-         // echo "Email: " . $row["mail"]. "<br>";
-        }
-      } else {
-        echo "0 results";
-      }
-     ?>
+
+          <form action="remove.php" method="post">
+            <label for="txtArtist">Choose an artist:</label>
+            <select name="txtArtist" id="txtArtist">
+                   <?php
+        if ($result->num_rows > 0) {
+      // output data of each row
+            while($row = $result->fetch_assoc()) {
+                  $name = $row['name']; 
+                  echo '<option value="'.$name.'">'.$name.'</option>';
+            }
+          }
+              ?>
+            </select>
+            <br><br>
+            <input type="submit" value="Remove">
+          </form>
+         
+
+    
      <br>
       </center>
    </div>

@@ -13,22 +13,20 @@ else {
 
 // get the post records
 $txtArtist = $_POST['txtArtist'];
-$txtImg = $_POST['txtImg'];
-$txtInfo = $_POST['txtInfo'];
 
 //echo $txtName;
-echo $txtArtist;
-echo $txtImg;
-echo $txtInfo;
+//echo $txtArtist."<br>";
+//echo $txtImg."<br>";
+//echo $txtInfo."<br>";
 // database insert SQL code
-$sql = "INSERT INTO `hof`(`name`, `info`, `picLoc`) VALUES ('$txtArtist','$txtInfo','$txtImg')";
+$sql = "DELETE FROM `hof` WHERE `name`='$txtArtist'";
 
 // insert in database
 $rs = mysqli_query($con, $sql);
 
 if($rs)
 {
-	echo '<script>alert("Page created")</script>';
+  echo '<script>alert("Page updated")</script>';
   echo '<script>window.location.href = "hof.php"</script>';
 }
 else {
